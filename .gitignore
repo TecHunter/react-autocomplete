@@ -3,3 +3,7 @@
 /examples/__build__
 /node_modules/
 /coverage/
+.idea
+yarn.lock
+*.iml
+yarn-*.log
