@@ -1,4 +1,6 @@
-# React Autocomplete [![Travis build status](https://travis-ci.org/reactjs/react-autocomplete.svg?branch=master)](https://travis-ci.org/reactjs/react-autocomplete/)
+# React Autocomplete
+
+#REWORK IN PROGRESS
 
 Accessible, extensible, Autocomplete for React.js.
 
@@ -10,14 +12,18 @@ Accessible, extensible, Autocomplete for React.js.
     { label: 'banana' },
     { label: 'pear' }
   ]}
-  renderItem={(item, isHighlighted) =>
-    <div style={{ background: isHighlighted ? 'lightgray' : 'white' }}>
+  renderItem={(item, {style, active, ...props}) =>
+    <div {...props} style={{ ...style, background: active ? 'lightgray' : 'white' }}>
       {item.label}
     </div>
   }
   value={value}
-  onChange={(e) => value = e.target.value}
-  onSelect={(val) => value = val}
+  debounce={500}
+  allowSelectNothing
+  /* for querying an api */
+  onChange={(value, item) => console.log('value changed after debounce', value)}
+  /* when you actually select a value */
+  onSelect={(val) => console.log('selected',val) /* null if nothing selected */}
 />
 ```
 
@@ -27,20 +33,15 @@ Check out [more examples](https://reactcommunity.org/react-autocomplete/) and ge
 
 ### npm
 
-```bash
-npm install --save react-autocomplete
-```
+TODO
 
 ### yarn
 
-```bash
-yarn add react-autocomplete
-```
+TODO
 
 ### AMD/UMD
 
-* Development: [https://unpkg.com/react-autocomplete@1.8.1/dist/react-autocomplete.js](https://unpkg.com/react-autocomplete@1.8.1/dist/react-autocomplete.js)
-* Production: [https://unpkg.com/react-autocomplete@1.8.1/dist/react-autocomplete.min.js](https://unpkg.com/react-autocomplete@1.8.1/dist/react-autocomplete.min.js)
+TODO
 
 ## API
 
