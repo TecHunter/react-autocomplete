@@ -1,7 +1,7 @@
-import React, { useEffect, useRef, useState } from 'react';
-import PropTypes from 'prop-types';
-import scrollIntoView from 'dom-scroll-into-view';
-import classnames from 'classnames';
+import React, { useEffect, useRef, useState } from 'react'
+import PropTypes from 'prop-types'
+import scrollIntoView from 'dom-scroll-into-view'
+import classnames from 'classnames'
 
 function useTimeout(fn, timer, inputs) {
 	useEffect(() => {
@@ -47,7 +47,11 @@ const Item = ({ item, active, renderItem, refMenu, style, ...props }) => {
 		}
 	}, [active])
 
-	return renderItem(item, { active: active || undefined, ref, className: classnames('item', active && 'active'), ...props })
+	return renderItem(item, {
+		active: active || undefined,
+		ref,
+		className: classnames('item', active && 'active'), ...props
+	})
 }
 
 const Autocomplete = ({
@@ -87,15 +91,15 @@ const Autocomplete = ({
 		value,
 		debounce === true ? 500 : debounce || 0,
 		(newVal) => {
-			if (newVal) {
-				onChange(newVal)
-			}
+			onChange(newVal)
 		}
 	)
 	const refInput = useRef(null)
 	const refMenu = useRef(null)
 
-	useEffect(() => setOpen(userOpen), [userOpen])
+	useEffect(() =>
+			setOpen(userOpen),
+		[userOpen])
 	useEffect(() => {
 		setIgnoreFocus(false)
 		if (!items) {
@@ -104,13 +108,13 @@ const Autocomplete = ({
 			let result = items
 			if (shouldItemRender) {
 				result = result.filter((item) => (
-					shouldItemRender(item, value)
+					shouldItemRender(item, debouncedValue)
 				))
 			}
 
 			if (sortItems) {
 				result.sort((a, b) => (
-					sortItems(a, b, value)
+					sortItems(a, b, debouncedValue)
 				))
 			}
 			setFilteredItems(result)
