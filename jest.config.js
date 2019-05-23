@@ -7,7 +7,7 @@ module.exports = {
   },
   setupFilesAfterEnv: ['<rootDir>/jest-plugins.js'],
   transform: {
-    '^.+\\-test.jsx?$': 'babel-jest'
-  },
+		'^.+\\.jsx?$': 'babel-jest'
+	},
   setupFiles: ['jest-plugin-context/setup']
 };
